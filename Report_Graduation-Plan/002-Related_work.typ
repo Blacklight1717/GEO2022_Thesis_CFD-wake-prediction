@@ -1,0 +1,7 @@
+= Related work
+
+A related work section in which the relevant literature is presented and
+linked to the project.
+
+
+//---
