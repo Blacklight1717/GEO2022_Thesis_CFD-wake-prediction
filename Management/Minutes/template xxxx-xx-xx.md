@@ -58,13 +58,6 @@ Status options:
 - Done
 - Cancelled
 
----
-
-## Questions
-
-1.
-2.
-3.
 
 ---
 

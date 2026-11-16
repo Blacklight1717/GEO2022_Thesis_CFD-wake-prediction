@@ -16,6 +16,14 @@ Status options:
 
 ---
 
+## Questions
+
+1.
+2.
+3.
+
+---
+
 ## Topics for Discussion
 
 ### Topic 1
@@ -28,13 +36,6 @@ Status options:
 - Discussion point
 - Discussion point
 
----
-
-## Questions
-
-1.
-2.
-3.
 
 ---
 
