@@ -1,75 +1,142 @@
-# A start date. Not required.
-start: 2024-11-01
-# An end date. Not required.
-end: 2025-03-24
-# A list of tasks
+start: 2026-11-09
+end: 2027-06-30
+
 tasks:
-    # The name of the task.
-  - name: Research
-    # Tasks with subtasks _can_ specify a start, end, and done date.
-    # If not, then the date will be calculated from its sub tasks.
-    #
-    # Thus it is rarely needed to specify this field, so it is unlikely
-    # you will need to use this field alongside the `subtasks` field.
-    intervals:
-      - start: 2024-11-27
-        end: 2024-12-04
-        done: 2024-11-29
 
-    # Optional: tasks, subtasks, milestones, intervals, and dependencies all
-    # support an `x` dictionary which can be used to attatch custom properties
-    # to them for custom drawers
-    #
-    # x:
-    #   my-awesome-library:
-    #     asignee: Simon
+  - name: Project Preparation
+    subtasks:
 
-    # This task's subtasks.
-    #
-    # Each has the same format as an element of the `tasks` array.
-    subtasks:
-      - name: "Read Statements"
-        start: 2024-11-27
-        end: 2024-12-04
-        # Optional: indicates a completion date of a task, so that the
-        # task will be highlighted differently.
-        done: 2024-11-29
-  - name: Drafting
-    subtasks:
-      - name: α draft
-        # Optional: give this task an `id` to be referenced
-        # by a dependency
-        id: alpha-draft
-        start: 2024-12-12
-        end: 2024-12-31
-      - name: β draft
-        id: beta-draft
-        start: 2024-12-31
-        end: 2025-01-31
-        # Optional: dependencies for this task.
-        # 
-        # These are rendered as an arrow between the tasks.
-        # 
-        # dependencies:
-        #   - id: alpha-draft
-      - name: Final Draft
-        # If a task has a hiatus in it, it can be specified like this:
-        # Each interval can have its own `start`, `end`, and `date`.
+      - name: Literature Review & State of the Art
         intervals:
-          - start: 2025-03-07
-            end: 2025-03-14
-          - start: 2025-03-18
-            end: 2025-03-24
-  - name: Production Log
+          - start: 2026-11-09
+            end: 2026-12-20
+          - start: 2027-01-03
+            end: 2027-01-15
+
+      - name: Research Questions & Scope
+        intervals:
+          - start: 2026-11-16
+            end: 2026-12-20
+          - start: 2027-01-03
+            end: 2027-01-15
+
+      - name: Project Plan
+        intervals:
+          - start: 2026-11-23
+            end: 2026-12-20
+          - start: 2027-01-03
+            end: 2027-01-15
+
+      - name: Kick-Off Presentation Preparation
+        start: 2027-01-11
+        end: 2027-01-17
+
+  - name: RANS Study
     subtasks:
-      - name: Record initial ideas
-        start: 2024-11-27
-        end: 2024-12-04
-        done: 2024-12-08
+
+      - name: CFD Methodology Design
+        start: 2027-01-18
+        end: 2027-02-05
+
+      - name: Geometry Preparation (City4CFD)
+        start: 2027-01-18
+        end: 2027-01-22
+
+      - name: Roughness and Wall Function Selection
+        start: 2027-01-18
+        end: 2027-02-05
+
+      - name: Probe Placement Strategy
+        start: 2027-01-18
+        end: 2027-02-05
+
+      - name: Verification
+        start: 2027-02-08
+        end: 2027-03-05
+
+      - name: Main RANS Simulations
+        start: 2027-02-08
+        end: 2027-03-19
+
+      - name: RANS Analysis & Interpretation
+        start: 2027-03-08
+        end: 2027-03-26
+
+      - name: Midterm Presentation Preparation
+        start: 2027-03-22
+        end: 2027-03-28
+
+  - name: LES Study
+    subtasks:
+
+      - name: LES Setup From RANS Results
+        start: 2027-03-29
+        end: 2027-04-16
+
+      - name: LES Simulations
+        start: 2027-04-12
+        end: 2027-05-21
+
+      - name: LES Analysis
+        start: 2027-05-10
+        end: 2027-05-28
+
+      - name: Green Light Presentation Preparation
+        start: 2027-05-03
+        end: 2027-05-09
+
+  - name: Thesis Report
+    subtasks:
+
+      - name: Literature Chapter
+        intervals:
+          - start: 2026-11-23
+            end: 2026-12-20
+          - start: 2027-01-03
+            end: 2027-01-31
+
+      - name: Methodology Chapter
+        start: 2027-01-18
+        end: 2027-03-12
+
+      - name: Verification Chapter
+        start: 2027-02-22
+        end: 2027-03-19
+
+      - name: RANS Results Chapter
+        start: 2027-03-08
+        end: 2027-04-25
+
+      - name: LES Results Chapter
+        start: 2027-05-03
+        end: 2027-06-04
+
+      - name: Discussion & Conclusions
+        start: 2027-05-24
+        end: 2027-06-18
+
+      - name: Final Editing
+        start: 2027-06-14
+        end: 2027-06-25
+
+      - name: Final Presentation Preparation
+        start: 2027-06-21
+        end: 2027-06-27
+
 milestones:
-  - name: 1st Draft Hand In
-    date: 2025-02-14
-    # Optional: whether or not the date should be shown in this milestone
-    show-date: true 
-  - name: Final Hand In
-    date: 2025-03-24
+
+  - name: Kick-Off
+    date: 2027-01-18
+    show-date: true
+
+  - name: Midterm
+    date: 2027-03-29
+    show-date: true
+
+  - name: Green Light
+    date: 2027-05-10
+    show-date: true
+
+  - name: Final Presentation
+    date: 2027-06-28
+    show-date: true

@@ -24,7 +24,7 @@
 #include "007-Tools_and_datasets_used.typ"
 
 
-#bibliography("refs.bib", style: "chicago-author-date")
+#bibliography("refs.bib", style: "apa")
 
 #set heading(numbering: "A.1.1", supplement: [Appendix])
 #counter(heading).update(0)
