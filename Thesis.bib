@@ -112,4 +112,62 @@ enable more efficient pedestrian wind comfort studies that recognize the associa
   publisher = {Springer Science and Business Media LLC},
 }
 
+@Article{Klapwijk2020,
+  author   = {M. Klapwijk and T. Lloyd and G. Vaz and T. {van Terwisga}},
+  journal  = {Computers & Fluids},
+  title    = {Evaluation of scale-resolving simulations for a turbulent channel flow},
+  year     = {2020},
+  issn     = {0045-7930},
+  pages    = {104636},
+  volume   = {209},
+  abstract = {Different variable resolution turbulence modelling approaches (Hybrid, Bridging models and LES) are evaluated for turbulent channel flow at Reτ=395, for cases using either streamwise periodic boundary conditions or a synthetic turbulence generator. The effect of iterative, statistical and discretisation errors is investigated. For LES, little difference between the different sub-filter modelling approaches is found on the finer grids, while on coarser grids ILES deviates from explicit LES approaches. The results for Hybrid models are strongly dependent on their formulation, and the corresponding blending between the RANS and LES regions. The application of PANS with different ratios of modelled-to-total kinetic energy, fk, shows that there is no smooth transition in the results between RANS and DNS. Instead a case-dependent threshold which separates two solution regimes is observed: fk values below 0.2 yield a proper turbulent solution, similar to LES results; higher fk values lead to a laminar flow due to filtering of the smallest scales in the inverse energy cascade. The application of a synthetic turbulence generator is observed to yield similar performance for all models. The reduced computational cost and increased flexibility makes it a suitable approach to enable the usage of SRS for industrial flow cases which depend on the development of a turbulent boundary layer. It ensures that sufficient large-scale structures develop over the full boundary layer height, thereby negating the problem of relying on the inverse energy cascade for the development of turbulence. Both LES and PANS with turbulence generator yield a better match with the reference data than Hybrid models; of these methods PANS is preferable due to the separation of modelling and discretisation errors.},
+  doi      = {https://doi.org/10.1016/j.compfluid.2020.104636},
+  keywords = {Turbulent channel flow, Verification, DES, LES, PANS, Synthetic turbulence},
+  url      = {https://www.sciencedirect.com/science/article/pii/S0045793020302085},
+}
+
+@Article{Shen2025,
+  author   = {Shen, Bing and Yuan, Yangjin and Zhou, Huan and Zhang, Zheng and Zhou, Tong and Zheng, Xing and Yang, Qingshan},
+  journal  = {Physics of Fluids},
+  title    = {Comparative assessment of large eddy simulation and detached eddy simulation in predicting aerodynamic and flow characteristics around a tall building},
+  year     = {2025},
+  issn     = {1070-6631},
+  month    = {09},
+  number   = {9},
+  pages    = {095163},
+  volume   = {37},
+  abstract = {This study evaluates the performance of three turbulence models—large eddy simulation (LES), delayed detached eddy simulation, and improved delayed detached eddy simulation (IDDES)—in predicting aerodynamic and flow characteristics around a tall building. Numerical results are validated against wind tunnel experimental data, illustrating that LES provides the most accurate predictions of mean and root mean square wind pressure and base moment coefficients. IDDES achieves a favorable balance between accuracy and computational efficiency, thereby offering a practical alternative to LES in engineering applications. Additionally, a comprehensive assessment of LES and IDDES in capturing the flow characteristics around a tall building is conducted in terms of wind velocity profiles, spectral distributions, spatial correlations, and three-dimensional vortex structures. It is demonstrated that LES is capable of accurately reproducing complex flow phenomena around a tall building, including separated shear layers and organized wake vortices. In comparison, IDDES provides predictions comparable to LES for the surrounding flow features of the tall building, while failing to adequately resolve fine-scale turbulence structures in the far wake. Moreover, the proper orthogonal decomposition analysis indicates that both LES and IDDES effectively capture the dominant energetic low-frequency structures, although subtle differences are observed in the modal energy distribution.},
+  doi      = {10.1063/5.0289342},
+  eprint   = {https://pubs.aip.org/aip/pof/article-pdf/doi/10.1063/5.0289342/20701871/095163_1_5.0289342.pdf},
+  url      = {https://doi.org/10.1063/5.0289342},
+}
+
+@Article{Liu2016,
+  author   = {Jianlin Liu and Jianlei Niu},
+  journal  = {Building and Environment},
+  title    = {CFD simulation of the wind environment around an isolated high-rise building: An evaluation of SRANS, LES and DES models},
+  year     = {2016},
+  issn     = {0360-1323},
+  pages    = {91-106},
+  volume   = {96},
+  abstract = {The choice of proper turbulence models in computational fluid dynamics is still a challenging issue for accurately predicting outdoor microclimate and thermal comfort conditions in urban planning. This study compared the performances of the Steady Reynolds Averaged Navier–Stokes (SRANS) RNG k-ε, Large Eddy Simulation (LES) and Detached Eddy Simulation (DES) modeling approaches in simulating the wind flow around an isolated building (with a 1:1:2 shape). The effects of the computational parameters were analyzed, including the grid resolution for all cases, and the discretization time step (Δt) and non-dimensional sampling time (t*) for the LES and DES cases. The results of the LES and DES simulations were affected by the gradual decrease in Δt and increase in t* until the two parameters reached 0.005 s and 288, respectively. The mean velocity fields on the windward side of the building predicted by the three models were in good agreement with the wind tunnel results. However, the results of the LES and DES cases were in better agreement with the experimental results for the leeward and lateral regions in both vertical and horizontal planes. The DDES (Delayed Detached Eddy Simulation) and LES models predicted similar results in the wake region, but the DDES has a lower overall mesh requirement. It is encouraging that the DDES model provides not only the mean flow field, but also the instantaneous wind characteristics, which can be useful for more accurate analysis of outdoor wind and thermal comfort.},
+  doi      = {https://doi.org/10.1016/j.buildenv.2015.11.007},
+  keywords = {CFD simulation, High-rise building, Wind flow pattern, Turbulence model, LES and DES models},
+  url      = {https://www.sciencedirect.com/science/article/pii/S0360132315301700},
+}
+
+@Article{Patil2025,
+  author   = {Akshay Patil and Clara García-Sánchez},
+  journal  = {Sustainable Cities and Society},
+  title    = {Quantifying the impact of urban geometric detail for urban air mobility risk forecasting},
+  year     = {2025},
+  issn     = {2210-6707},
+  pages    = {106750},
+  volume   = {132},
+  abstract = {Wind flow predictions in realistic urban areas are sensitive to a wide range of governing parameters such as building resolution, wind incidence, urban morphology, and underlying topography, to name a few. In this study, we systematically study the impact of the geometric level of detail (LoD) of the urban built environment using a Reynolds Averaged Navier–Stokes (RANS) computational framework specifically tailored for urban air mobility. Using a wind-incidence angular resolution of 1°, we simulated a total of 1440 simulations for two distinct urban areas and developed a probabilistic risk metric (Pr) based on velocity and turbulence fields that allow us to compare the impact of LoD 1.2 (lower geometric detail) and LoD 2.2 (higher geometric detail). Comparing the wind-rose weighted average velocity and the risk map, we found that LoD 2.2 provides a more conservative prediction for high-risk areas than LoD 1.2, suggesting the need to adopt higher geometric details when applicable. Our results present a cautionary view on the impact of LoD and how automatic reconstruction can further the efficiency of current wind engineering practices.},
+  doi      = {https://doi.org/10.1016/j.scs.2025.106750},
+  keywords = {Computational fluid dynamics, RANS, Urban-air mobility, OpenFOAM, Level of detail (LoD), Urban fluid dynamics},
+  url      = {https://www.sciencedirect.com/science/article/pii/S2210670725006249},
+}
+
 @Comment{jabref-meta: databaseType:bibtex;}

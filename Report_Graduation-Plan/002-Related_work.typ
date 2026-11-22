@@ -3,7 +3,38 @@
 
 There are various studies and research papers focused on the topic of urban wind simulation and specifically on wake analysis. Repeating the methods presented in these studies is not the goal of this project. Instead, the aim is to evaluate existing methods, identify their limitations, and find elements that can be adapted for the project. This chapter will present the most relevant studies for the project.
 
-== Computational Fluid Dynamics for urban physics
+== Method comparisons
+
+As described in @Blocken2015, there exist two main methods to model the flow in urban environments. These are Reynolds-averaged Navier-Stokes (RANS) and Large eddy simulation (LES). 
+
+RANS functions as a time averaged model of the flow within a specified grid. A method called unsteady RANS or URANS, does allow flow to develop over time. However, according to @Blocken2015, URANS can capture the turbulent behavior, but the turbulence remains modelled instead of directly solved. Therefore, this section will not evaluate the performance of URANS, as LES is determined to be better suited for this purpose @Blocken2015. The LES method directly resolves large eddies, these are rotating pockets of air (vortices), where the flow diverges from the steady flow direction. Unlike RANS, LES does not rely on time-averaging of the flow field, thus can represent the flow more accurately than RANS according to @Blocken2015. A third hybrid method called a Detached eddy simulation (DES). It is a hybrid between LES and RANS, which strikes a balance between the accuracy of LES and the computational efficiency of RANS by using RANS at the walls and an approximation of LES in turbulent regions.
+
+This subchapter goes over several papers that discuss these three methods to help determine which method is most suitable to model the conditions measured at the Aerospace building.
+
+=== Comparing LES to RANS
+As stated in the introduction, the two main methods of modelling the urban flow are considered to be LES and RANS. Therefore, it is important to determine whether either or both of these methods are suitable for the use case. It is for this purpose that @Blocken2018 has written a paper that compares and contrasts the two methods. The main topic for this paper is to determine why LES, due to its generally more results, has not yet replaced RANS. 
+
+The general consensus between papers is that LES is superior when it comes to solving turbulent structures, which notably does not imply all structures. LES does not simulate all eddies, but focuses on larger turbulent structures using a filtering method @Blocken2018. Since the objective of this project is to analyse the turbulent wake that develops around the Aerospace building and in particular the rooftop instruments, the accurate representation of large turbulent structures is particularly important. However, LES is not automatically more reliable compared to RANS. The method is more sensitive to the case design decisions such as inlet conditions and the mesh refinement. RANS on the other hand is far less computationally demanding @Liu2016. Furthermore, it is said to have sufficient accuracy for other use cases such as pedestrian comfort and pollution dispersion analysis. 
+
+In conclusion, it is possible to run multiple simulations of varying geometries and conditions for the same computational cost as LES, while sacrificing the accuracy of reconstruction of large turbulent regions. 
+These observations suggest that a method which combines the two methods (such as DES), or uses RANS for course and itterative simulations and LES for a more detailed evaluation, could be beneficial for this project.
+
+#drafting.inline-note("Use to support choice to do 'cheap' RANS for 360 degree look and using more accurate LES for evaluating in cases that require closer evaluation.")
+
+=== Comprehensive LES, DES, RANS comparison.
+Within the main three categories of CFD solvers, there exist variants and improvements upon the standard versions. For this literature review, three papers were chosen which attempt to evaluate these methods and determine which provides results closest to whichever method of validation was used, but it existing data or wind tunnel testing. In the case of this project, the simulations will be compared against measurements from a scintillometer, located on the roof of the TU Delft Aerospace building. It is therefore imperative that the chosen method accurately recreate the real world effects that can be found in this simulation.
+
+The first metric which is evaluated is the reattachment length @Liu2016. This represents the length of the wake, after which the turbulent flow reattaches to the steady flow. The chosen ground truth of this paper is a wind tunnel test which recreates the effects around a bluff body representing a building. It evaluates both the wake created on top of the building and the one behind the building. The analysis found that the roof experienced a difference of roughly 20% for RANS, while having the same result for DES and LES. The wake behind the building however showed that RANS overestimated the reattachment length by 130%, while DES and LES perform similarly at roughly 10% when both use the same cell count @Liu2016. The main stated improvement of DES over LES is that it can function with a lower amount of cells. The paper states that they saw a 20-30% reduction in CPU time, when the amount of cells was reduced by roughly 20%. While these findings are supported by @Shen2025, this paper does state that the reattachment length at the reduced cell count goes from a 10% difference with the wind tunnel case, to a 16% difference in the wake behind the building.
+
+However, in another paper it is found that the mean velocity determined by DES is 90% similar to the LES case it evaluates @Shen2025. When looking at DES derived methods, the standard DES method performs the worst, followed by DDES. The DDES method is not deemed suitable for evaluating turbulence as it sees significant disagreements in Reynolds stresses @Klapwijk2020, turbulent fluctuations and fewer resolved structures than LES methods. IDDES on the other hand performs significantly better, while more closely matching the Reynolds stresses and turbulent structures. However, it still exhibits under predictions compared to LES. Furthermore, It predicts weaker turbulent diffusion compared to LES and has a limited ability to capture high-frequency instabilities and fine-scale turbulence. Significant discrepancies in the lateral velocity correlations are also found in the far wake @Shen2025. Lastly, IDDES  exhibits incomplete and weakly defines horseshoe vortices and its side-edge vortices have a tendency to collapse into smaller and disorganized structures and incomplete vortices. According to @Shen2025 this implies that LES provides a more accurate representation of the vortices compared to IDDES.
+
+The third evaluated paper does not focus on the urban enviroment @Klapwijk2020. Instead, it is focussed on a turbulent channel flow, which it compares to a DNS test dataset. However, this paper still provides additional context. Methods which show large disagreements even within this simplified setup, are likely to also show these disagreements with more complex urban geometries. The study finds that out of the various existing LES methods, LES WALE, or the Large Eddy Simulation with a Wall-Adapting Local Eddy-viscosity subgrid-scale model, provides a good agreement with the ground truth in terms of solved turbulent structures and Reynolds stresses. Within the simplified geometry it performs similarly to the @SMAGORINSKY1963 LES method. However, the paper identifies that given more complex geometries, WALE may perform better as it was designed for more complex geometries. The paper deems the LES ILES method to have the best agreement with the DNS data. Furthermore, in agreement with both @Shen2025 and @Liu2016, it finds that the ability of DES methods to represent the large turbulent structures, is generally inferior to those created by LES based models.
+
+#drafting.inline-note("Add some visual examples of these vortex phenomena")
+
+== Best practices
+=== Best practices for RANS
+Computational Fluid Dynamics for urban physics
 
 This paper is not focused directly on the topic of wake analysis, but it provides good guidelines for the general case of urban wind simulations @Blocken2015. 
 
@@ -45,7 +76,8 @@ This paper is not focused directly on the topic of wake analysis, but it provide
 
 - Documentation of the simulation is important, write down everything such that the experiments can be reproduced.
 
-== Recommendations on the use of CFD in wind engineering
+=== Extended RANS criteria
+Recommendations on the use of CFD in wind engineering
 @Franke2004
 - This paper is similar to the @Blocken2015 paper, but goes more into detail about some aspects.
 
@@ -65,45 +97,10 @@ Realizable k-epsilon can show unrealistic acceleration in some cases")
 
 - It recommends to use probes to monitor key values in the region of interest and see if the residuals are converging.
 
-== Flow-based stress-blended eddy simulation
-- LES is very sensitive to the refinement of the grid, wrt the percentage of resolved eddies. Hybrid methods generally do not have this problem.
+=== Best practices for LES
+AIJ guidelines on the applications of large-eddy simulation to pedestrian wind environment
 
-- Suggests an alternative to the RANS to LES approach. Instead, it uses a RANS-LES hybrid called DES (Detached Eddy Simulation). It uses RANS in the boundary layer and LES in the free stream. It is a more accurate method than RANS, but less expensive than LES. However, it approximates LES through modified turbulent dissipation instead of refined grid cells.
-
-- It also suggests SBES which is a newer method which linearly blends turbulence to mimic LES and is somewhat better in that regard.
-
-- @Liu2019 states that DDES took only 80.3% of the time to run compared to LES and has a linear correlation coefficient of 0.9.
-
-- It states that even though it is less computationally heavy, it is still outside of the realm of possibilities for realistic approaches. However, the states source reports no such claims.
-
-- Nevertheless, a gain of 20% is likely not worth it considering the amount of LES cases to be run. Furthermore, LES @SMAGORINSKY1963 appears to be a far more matured and proven method than the DES method @Spalart1997.
-
-== Quantifying the impact of urban geometric detail for urban air mobility risk forecasting
-
-- The paper compares the effects of LOD1.2 to LOD2.2 which represent the geometric complexity of the building geometry. It states the less complex LOD1.2 geometry has a roughly 20% difference in directionally averaged windspeed compared to the LOD2.2 case. Furthermore, the LOD 2.2 mesh becomes larger due the higher detail to be resolved. Nevertheless, the implementation of LOD 2.2 geometries is important for the receiver and transmitter of the scintillometer setup, as the wind cannot be accurately modelled around a building which itself does not represent reality.
-
-- The paper simulates the flow around geometry at 1 degree intervals. Furthermore, a windrose is constructed which shows the probability of wind directions over a 20 year period. Furthermore, the velocities is plotted onto a histogram which is then used to determine a mean/average windspeed for all simulations. 
-
-- While a 1 degree angle is chosen for this research paper. However, it makes mention of other papers such as @Haagbo2022, which evaluates varying wind direction ranges and compares the wind comfort to that of a 64 directional analysis. This equates to a roughly 5 degree angular resolution. For the application of wind comfort modelling a 10 degree resolution is deemed minimal by this paper.
-
-#drafting.inline-note("For methodology mention that I choose a middleground between the 1 and 10 degree angular resolutions as a tradeoff between computational time and resolution of the analysis.")
-
-== LES over RANS in building simulation for outdoor and indoor applications
-- This article contains and exhaustive comparison between RANS and LES @Blocken2018.
-
-- The general consensus is that LES is better at large solving turbulent structures, which does not mean all structures, as LES filters to only resolve large eddies. This makes it more suited for evaluating the turbulence, which is especially relevant for this project.
-
-- RANS is much faster (e.g. less computationally demanding) and has sufficient accuracy for most general cases such as pedestrian comfort and polution dispertion. 
-
-- LES is not automatically more reliable as it is more sensitive to design decisions compared to RANS. Furthermore, few concrete design recommendations exist for LES unlike RANS.
-
-- It correctly notes that regardless of the choice, just having CFD analysis is no substitue for testing in real world or windtunnel conditions.
-
-#drafting.inline-note("Use to support choice to do 'cheap' RANS for 360 degree look and using more accurate LES for evaluating in cases that require closer evaluation.")
-
-== AIJ guidelines on the applications of large-eddy simulation to pedestrian wind environment
-
-- While @Blocken2015 focusses on guidelines for RANS, this article does the same for LES @Okaze2026.
+- While @Blocken2015 focuses on guidelines for RANS, this article does the same for LES @Okaze2026.
 
 - The requirements set for the domain size match those found in @Blocken2015. This includes the distance in $-X$, $X$, $-Y$, $Y$, and $Z$ directions.
 
@@ -175,3 +172,14 @@ $T_"ft" = L_d/U_delta$
 
 - The paper provides benchmark cases which provide cases which comply with the guidelines in the article and have been verified with windtunnel data.
 
+== Existing research
+=== Effect of LOD level on urban comfort.
+*Quantifying the impact of urban geometric detail for urban air mobility risk forecasting*
+
+- The paper compares the effects of LOD1.2 to LOD2.2 which represent the geometric complexity of the building geometry. It states the less complex LOD1.2 geometry has a roughly 20% difference in directionally averaged windspeed compared to the LOD2.2 case. Furthermore, the LOD 2.2 mesh becomes larger due the higher detail to be resolved. Nevertheless, the implementation of LOD 2.2 geometries is important for the receiver and transmitter of the scintillometer setup, as the wind cannot be accurately modelled around a building which itself does not represent reality.
+
+- The paper simulates the flow around geometry at 1 degree intervals. Furthermore, a windrose is constructed which shows the probability of wind directions over a 20 year period. Furthermore, the velocities is plotted onto a histogram which is then used to determine a mean/average windspeed for all simulations. 
+
+- While a 1 degree angle is chosen for this research paper. However, it makes mention of other papers such as @Haagbo2022, which evaluates varying wind direction ranges and compares the wind comfort to that of a 64 directional analysis. This equates to a roughly 5 degree angular resolution. For the application of wind comfort modelling a 10 degree resolution is deemed minimal by this paper.
+
+#drafting.inline-note("For methodology mention that I choose a middleground between the 1 and 10 degree angular resolutions as a tradeoff between computational time and resolution of the analysis.")

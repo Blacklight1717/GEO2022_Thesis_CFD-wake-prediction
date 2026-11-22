@@ -2,13 +2,13 @@
 #import "@preview/gantty:0.5.1": *
 
 #show: doc => kickoff(
-  title: "My fantastic title",
-  author: "Céline Dion",
-  studentnumber: "123456",
-  supervisor1: "Eva de Groot",
-  supervisor2: "Piet Smit",
+  title: "TUDelft Aerospace building wake prediction with CFD and its effects for local wind measurements",
+  author: "Ruben Vons",
+  studentnumber: "6285880",
+  supervisor1: "Clara Garcia Sanchez",
+  supervisor2: "Themis Vargiemezis",
   // company: "Deltares",
-  date: "2026-08-13",
+  date: "2027-01-xx",
   doc,
 )
 
